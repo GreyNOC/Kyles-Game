@@ -1,6 +1,6 @@
 # Kyle's Game
 
-A portable Windows game project published under the GreyNOC account.
+A portable Windows game project 
 
 ## Download
 
