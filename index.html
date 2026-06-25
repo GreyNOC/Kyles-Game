@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kyle Hunt</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="game-shell" aria-label="Kyle Hunt game">
+      <canvas id="gameCanvas" aria-label="Retro duck shooting game"></canvas>
+
+      <section class="hud" aria-label="Game status">
+        <div class="hud__group">
+          <span class="hud__label">Round</span>
+          <strong id="roundValue">1</strong>
+        </div>
+        <div class="hud__group">
+          <span class="hud__label">Score</span>
+          <strong id="scoreValue">0</strong>
+        </div>
+        <div class="hud__group">
+          <span class="hud__label">Best</span>
+          <strong id="bestValue">0</strong>
+        </div>
+        <div class="hud__group">
+          <span class="hud__label">Shots</span>
+          <strong id="shotsValue">3</strong>
+        </div>
+        <div class="hud__group">
+          <span class="hud__label">Ducks</span>
+          <strong id="ducksValue">0/10</strong>
+        </div>
+      </section>
+
+      <div class="crosshair" id="crosshair" aria-hidden="true"></div>
+
+      <section class="overlay overlay--visible" id="startOverlay" aria-label="Start game">
+        <div class="panel">
+          <p class="eyebrow">Arcade field test</p>
+          <h1>Kyle Hunt</h1>
+          <p class="lede">Tag the flying ducks before they vanish. Kyle handles field duty, encouragement, and light heckling.</p>
+          <div class="actions">
+            <button class="primary" id="startButton" type="button">Start</button>
+            <button class="secondary" id="muteButton" type="button" aria-pressed="false">Sound On</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="overlay" id="roundOverlay" aria-live="polite" aria-label="Round result">
+        <div class="panel panel--small">
+          <p class="eyebrow" id="roundEyebrow">Round cleared</p>
+          <h2 id="roundTitle">Nice Shooting</h2>
+          <p id="roundText">Kyle is impressed, which is rare and should be documented.</p>
+          <button class="primary" id="nextButton" type="button">Next Round</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="game.js"></script>
+  </body>
+</html>

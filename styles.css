@@ -1,0 +1,249 @@
+:root {
+  --ink: #14120f;
+  --paper: #fff8e8;
+  --accent: #e33b2e;
+  --accent-dark: #9a2018;
+  --sky: #8fd8ff;
+  --field: #298247;
+  --shadow: rgba(14, 22, 28, 0.32);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #74c7f0;
+  color: var(--ink);
+  font-family: "Trebuchet MS", Arial, sans-serif;
+}
+
+button {
+  border: 0;
+  border-radius: 7px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+}
+
+.game-shell {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  cursor: none;
+  user-select: none;
+}
+
+#gameCanvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+  background: var(--sky);
+}
+
+.hud {
+  position: fixed;
+  left: clamp(10px, 3vw, 28px);
+  right: clamp(10px, 3vw, 28px);
+  bottom: clamp(10px, 2.2vw, 22px);
+  z-index: 4;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(68px, 1fr));
+  gap: 8px;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 8px;
+  background: rgba(20, 18, 15, 0.82);
+  border: 3px solid #f8dc7c;
+  box-shadow: 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.hud__group {
+  min-width: 0;
+  padding: 6px 7px;
+  border: 2px solid rgba(255, 248, 232, 0.28);
+  color: var(--paper);
+  text-align: center;
+}
+
+.hud__label {
+  display: block;
+  margin-bottom: 2px;
+  color: #f8dc7c;
+  font-size: 0.66rem;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.hud strong {
+  display: block;
+  overflow: hidden;
+  font-size: clamp(1rem, 2.3vw, 1.45rem);
+  line-height: 1.05;
+  text-overflow: ellipsis;
+}
+
+.crosshair {
+  position: fixed;
+  z-index: 5;
+  width: 38px;
+  height: 38px;
+  border: 3px solid var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 120ms ease;
+}
+
+.crosshair::before,
+.crosshair::after {
+  position: absolute;
+  content: "";
+  background: var(--accent);
+}
+
+.crosshair::before {
+  left: 50%;
+  top: -8px;
+  width: 3px;
+  height: 52px;
+  transform: translateX(-50%);
+}
+
+.crosshair::after {
+  left: -8px;
+  top: 50%;
+  width: 52px;
+  height: 3px;
+  transform: translateY(-50%);
+}
+
+.game-shell:hover .crosshair {
+  opacity: 1;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 8;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(12, 28, 39, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+
+.overlay--visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.panel {
+  width: min(500px, 100%);
+  padding: clamp(22px, 4vw, 34px);
+  background: var(--paper);
+  border: 4px solid var(--ink);
+  border-radius: 8px;
+  box-shadow: 0 12px 0 var(--shadow);
+  text-align: center;
+}
+
+.panel--small {
+  width: min(430px, 100%);
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: var(--accent-dark);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+h1,
+h2 {
+  margin: 0;
+  line-height: 0.95;
+}
+
+h1 {
+  font-size: clamp(3rem, 14vw, 6rem);
+}
+
+h2 {
+  font-size: clamp(2.2rem, 8vw, 4rem);
+}
+
+.lede,
+#roundText {
+  margin: 16px auto 0;
+  max-width: 34rem;
+  font-size: clamp(1rem, 2vw, 1.16rem);
+  line-height: 1.45;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.primary,
+.secondary {
+  min-width: 118px;
+  min-height: 46px;
+  padding: 0 18px;
+  color: var(--paper);
+  box-shadow: inset 0 -5px 0 rgba(0, 0, 0, 0.22);
+}
+
+.primary {
+  background: var(--accent);
+}
+
+.secondary {
+  background: #2a6fbb;
+}
+
+.primary:active,
+.secondary:active {
+  transform: translateY(2px);
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.22);
+}
+
+#nextButton {
+  margin-top: 22px;
+}
+
+@media (max-width: 640px) {
+  .hud {
+    grid-template-columns: repeat(5, minmax(50px, 1fr));
+    gap: 5px;
+    padding: 5px;
+  }
+
+  .hud__group {
+    padding: 5px 3px;
+  }
+
+  .hud__label {
+    font-size: 0.54rem;
+  }
+
+  .crosshair {
+    display: none;
+  }
+}
